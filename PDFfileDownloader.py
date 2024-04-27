@@ -60,13 +60,7 @@ if sleep_until_element_appears('/html/body/div[3]/div[3]/div[1]/div/div[2]/ul/li
    sleep(2)
 
 else:
-    current_url1 = driver.current_url
-    driver.quit()
-    sleep(3)
-    driver = webdriver.Chrome()
-    driver.get(current_url1)
-    driver.maximize_window()
-    sleep(2)
+
     RightC = driver.find_element(By.XPATH, '/html/body/div[3]/div[3]/div[2]')
     action_chains = ActionChains(driver)
     action_chains.context_click(RightC).perform()
@@ -78,20 +72,29 @@ else:
         sleep(3)
         sele_cheatsheet = driver.find_element(By.XPATH, '/html/body/div[3]/div[3]/div[1]/div/div[2]/ul/li/ul/li[8]')
         sele_cheatsheet.click()
-        sleep(2)
+        sleep(3)
+        current_url1 = driver.current_url
+        driver.quit()
+        sleep(3)
+        driver = webdriver.Chrome()
+        driver.get(current_url1)
+        sleep(1)
+        driver.maximize_window()
+        print("Selenium Tutorial page has left panel loading issue. So, bypassing this issue by right clicking on page")
 
     else:
         driver.quit()
         print("Couldn't load Selenium Tutorial page. Please check your internet connection")
         sys.exit()
 
-sleep(1)
+sleep(3)
 
 driver.execute_script("window.scrollTo(0, 500)")
 sleep(2)
 
 open_Pdf = driver.find_element(By.XPATH, '//html/body/div[3]/div[3]/div[2]/div[6]/div/article/p[3]/a/strong')
 open_Pdf.click()
+print("Opened the PDF file in web browser")
 sleep(4)
 
 current_url2 = driver.current_url
